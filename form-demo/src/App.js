@@ -1,6 +1,13 @@
+// import './App.css'
+import { Route, Switch } from 'react-router-dom';
+import Form from './form.js'; 
+
 function App() {
   return (
-    <h1>Hello from App</h1>
+    <div className='app'>
+      <h1>Hello from App</h1>
+        <Form/>
+    </div>
   );
 }
 
