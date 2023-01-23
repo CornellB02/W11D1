@@ -2,47 +2,89 @@ import React, {useState, useRef} from 'react';
 
 function Form(props){
 
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        phoneNumber: '',
+        phoneType: 'Home',
+        bio: ''
+    }
+    )
+    // const phoneTypes = ['Home', 'Work', 'Mobile']
+    // const [selectedPhone, setSelectedPhone] = useState(phoneTypes[0])
 
-    const phoneTypes = ['Home', 'Work', 'Mobile']
-    const [selectedPhone, setSelectedPhone] = useState(phoneTypes[0])
+    // const setWork = () => {
+    //     setSelectedPhone(phoneTypes[1]);
+    // }
+    const handleSubmit = (e) => {
+        // setWork()
+        e.preventDefault();
+        // let errors = validate();
 
-    setSelectedPhone(phoneTypes[1]);
-    return <h1>{selectedPhone}</h1>
-    // return (
-    //     <div>
-    //         {/* {showErrors()} */}
-    //         <form className="form" onSubmit={HandleSubmit}>
-    //             <h2>Sign Up</h2>
-    //             <input 
-    //             type="text"
-    //             placeholder="Name"
-    //             value={user.name}
-    //             // onChange={handleChange('name')}
-    //             />
+        console.log(user);
+    }
 
-    //             <input 
-    //             type="text"
-    //             placeholder="email"
-    //             value={user.email}
-    //             // onChange={handleChange('email')}
-    //             />
+    const handleChange = (field) => {
+        return (e) =>{
+            console.log(field)
+            console.log(e)
 
-    //             <input 
-    //             type="text"
-    //             placeholder="Phone Number"
-    //             value={user.phoneNumber}
-    //             // onChange={handleChange('phoneNumber')}
-    //             />
+            const newObject = Object.assign({}, user, {[field]: e.target.value})
+            setUser(newObject);
+        }
+    }
 
-    //             <select name="" id="">
+    // return (<div>
+    //     <button onClick={handleSubmit}>Hello</button>
+    //     <h1>{selectedPhone}</h1>
+    // </div>)
+    return (
+        <div>
+            {/* {showErrors()} */}
+            <form className="form" onSubmit={handleSubmit}>
+                <h2>Sign Up</h2>
+                <input 
+                type="text"
+                placeholder="Name"
+                value={user.name}
+                onChange={handleChange('name')}
+                />
 
-    //             </select>
+                <input 
+                type="text"
+                placeholder="email"
+                value={user.email}
+                onChange={handleChange('email')}
+                />
+
+                <input 
+                type="text"
+                placeholder="Phone Number"
+                value={user.phoneNumber}
+                onChange={handleChange('phoneNumber')}
+                /> 
+
+                <select name={user.phoneType} 
+                onChange={handleChange('phoneType')}>
+
+                    <option value="Home">
+                        Home
+                    </option>
+                    <option value="Mobile">
+                        Mobile
+                    </option>
+                    <option value="Work">
+                        Work
+                    </option>
+                </select>
+
+                <input type="submit" value="submit"/>
 
 
-    //         </form>
-    //     </div>
+            </form>
+        </div>
 
-    // )
+    )
 }
 
 export default Form;
