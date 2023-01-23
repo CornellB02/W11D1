@@ -16,6 +16,19 @@ function Form(props){
     // const setWork = () => {
     //     setSelectedPhone(phoneTypes[1]);
     // }
+
+    const [errors, setErrors] = useState([]);
+
+    const validates = () => {
+        let errors = [];
+
+        if(user.name.length === 0){
+            errors.push('Name can\'t be empty');
+        }
+
+        // if(user.email)
+    }
+
     const handleSubmit = (e) => {
         // setWork()
         e.preventDefault();
